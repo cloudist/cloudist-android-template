@@ -47,7 +47,6 @@ android {
 
 dependencies {
     final RETROFIT_VERSION = '2.0.0-beta3'
-    final OKHTTP_VERSION = '3.0.1'
     final FRESCO_VERSION = '0.9.0+'
     final ICEPICK_VERSION = '3.1.0'
 
@@ -66,9 +65,7 @@ dependencies {
     compile "com.squareup.retrofit2:adapter-rxjava:$RETROFIT_VERSION"
 
     // OkHttp
-    compile "com.squareup.okhttp3:okhttp:$OKHTTP_VERSION"
-    compile "com.squareup.okhttp3:logging-interceptor:$OKHTTP_VERSION"
-    compile 'com.squareup.okio:okio:1.6.0'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.0.1'
 
     // RxJava
     compile 'io.reactivex:rxandroid:1.1.0'

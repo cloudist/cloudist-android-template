@@ -5,5 +5,5 @@ public class HttpStatus {
     private HttpStatus() {
     }
 
-    public static final int EXAMPLE_OK = 200;
+    public static final int CODE_OK = 200;
 }
