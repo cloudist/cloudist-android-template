@@ -1,0 +1,89 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion rootProject.compileSdkVersion
+    buildToolsVersion rootProject.buildToolsVersion
+
+    defaultConfig {
+        applicationId "cc.cloudist.app.android.boilerplate"
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
+        versionCode rootProject.versionCode
+        // Major -> Thousands, Minor -> Hundreds, Bugfix -> Tens. E.g 1.3.72 == 1372
+        versionName rootProject.versionName
+    }
+
+    signingConfigs {
+        debug {
+            storeFile file("${CloudistAppKeystoreDebugLocation}")
+            keyAlias "${CloudistAppDebugKeyAlias}"
+            storePassword "${CloudistAppDebugStorePassword}"
+            keyPassword "${CloudistAppDebugKeyPassword}"
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+            versionNameSuffix " Debug"
+            debuggable true
+        }
+    }
+
+    //Needed because of this https://github.com/square/okio/issues/58
+    lintOptions {
+        disable 'InvalidPackage'
+    }
+
+    packagingOptions {
+        // Butter Knife
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+    }
+}
+
+dependencies {
+    final RETROFIT_VERSION = '2.0.0-beta3'
+    final OKHTTP_VERSION = '3.0.1'
+    final FRESCO_VERSION = '0.9.0+'
+    final ICEPICK_VERSION = '3.1.0'
+
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile project(':nucleus')
+
+    compile "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
+    compile "com.android.support:recyclerview-v7:$rootProject.supportLibraryVersion"
+    compile "com.android.support:cardview-v7:$rootProject.supportLibraryVersion"
+    compile "com.android.support:percent:$rootProject.supportLibraryVersion"
+    compile "com.android.support:design:$rootProject.supportLibraryVersion"
+
+    // Retrofit
+    compile "com.squareup.retrofit2:retrofit:$RETROFIT_VERSION"
+    compile "com.squareup.retrofit2:converter-gson:$RETROFIT_VERSION"
+    compile "com.squareup.retrofit2:adapter-rxjava:$RETROFIT_VERSION"
+
+    // OkHttp
+    compile "com.squareup.okhttp3:okhttp:$OKHTTP_VERSION"
+    compile "com.squareup.okhttp3:logging-interceptor:$OKHTTP_VERSION"
+    compile 'com.squareup.okio:okio:1.6.0'
+
+    // RxJava
+    compile 'io.reactivex:rxandroid:1.1.0'
+    compile "io.reactivex:rxjava:$rootProject.rxVersion"
+
+    // ButterKnife
+    compile 'com.jakewharton:butterknife:7.0.1'
+
+    // Fresco
+    compile "com.facebook.fresco:fresco:$FRESCO_VERSION"
+    compile "com.facebook.fresco:imagepipeline-okhttp:$FRESCO_VERSION"
+
+    // Icepick
+    compile "frankiesardo:icepick:$ICEPICK_VERSION"
+    provided "frankiesardo:icepick-processor:$ICEPICK_VERSION"
+
+    testCompile 'junit:junit:4.12'
+}
