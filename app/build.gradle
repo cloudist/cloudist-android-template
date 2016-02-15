@@ -83,7 +83,7 @@ dependencies {
     provided "frankiesardo:icepick-processor:$ICEPICK_VERSION"
 
     // GreenDao
-    compile 'de.greenrobot:greendao:2.0.0'
+    compile "de.greenrobot:greendao:$rootProject.greenDaoVersion"
 
     testCompile 'junit:junit:4.12'
 }

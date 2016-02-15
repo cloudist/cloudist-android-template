@@ -28,6 +28,7 @@ ext {
     versionName = '1.0.0'
     supportLibraryVersion = '23.1.1'
     rxVersion = '1.1.0'
+    greenDaoVersion = '2.1.0'
 }
 
 task clean(type: Delete) {
